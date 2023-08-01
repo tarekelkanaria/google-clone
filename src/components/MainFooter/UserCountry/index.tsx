@@ -25,13 +25,11 @@ const UserCountry = () => {
   }, [data]);
 
   return (
-    <>
-      <p className="px-8 py-3 border-b border-[#dadce0]">
-        <ClipLoader color="#93c5fd" loading={isLoading} size={20} />
-        {error && "Country Not Found"}
-        {data && country}
-      </p>
-    </>
+    <p className="px-8 py-4 border-b border-[#dadce0]">
+      <ClipLoader color="#93c5fd" loading={isLoading} size={20} />
+      {error && "Country Not Found"}
+      {data && country}
+    </p>
   );
 };
 

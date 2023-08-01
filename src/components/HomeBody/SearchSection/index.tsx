@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useSwr from "swr";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -27,16 +27,19 @@ const SearchSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchWord.trim()) return;
-    router.push(`/search/web?searchTerm=${searchWord}`);
+    router.push(`/search/all?searchTerm=${searchWord}`);
   };
 
   const handleRandomSearch = () => {
     setIsRandomSearch(true);
   };
-  if (error) return;
-  if (data) {
-    router.push(`/search/web?searchTerm=${data[0]}`);
-  }
+
+  useEffect(() => {
+    if (error) return;
+    if (data) {
+      router.push(`/search/all?searchTerm=${data[0]}`);
+    }
+  }, [data, error]);
 
   return (
     <>

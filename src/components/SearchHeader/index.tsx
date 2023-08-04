@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import HeaderSearchForm from "./HeaderSearchForm";
 import HeaderSearchOptions from "./HeaderSearchOptions";
+
 import { RiSettings3Line } from "react-icons/ri";
 import { TbGridDots } from "react-icons/tb";
 
@@ -9,7 +11,7 @@ export default function SearchHeader() {
   return (
     <header className="sticky top-0 left-0 container bg-white">
       <nav className="flex w-full p-2 sm:p-6 justify-between items-center">
-        <Link href="/">
+        <Link href="/" className="hidden sm:inline-block">
           <Image
             width={120}
             height={40}

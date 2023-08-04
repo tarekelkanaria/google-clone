@@ -22,11 +22,11 @@ const HeaderSearchForm = () => {
 
   return (
     <form
-      className="flex border border-gray-200 rounded-full shadow-lg py-3 px-2 indent-4 mx-1 sm:mx-5 flex-grow max-w-3xl items-center"
+      className="flex border border-gray-200 rounded-full shadow-lg p-1 sm:py-3 sm:px-2 indent-4 mx-1 sm:mx-5 flex-grow max-w-3xl items-center"
       onSubmit={updateSearch}
     >
       <input
-        type="search"
+        type="text"
         className="w-full focus:outline-none"
         value={term}
         onChange={(e) => setTerm(e.target.value)}

@@ -18,7 +18,7 @@ export default function HomeHeader() {
           Images
         </Link>
         <TbGridDots className="icon" />
-        <button className="signin-btn">Sign in</button>
+        <button className="main-btn">Sign in</button>
       </nav>
     </header>
   );

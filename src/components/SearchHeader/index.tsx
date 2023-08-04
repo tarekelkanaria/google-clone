@@ -31,7 +31,7 @@ export default function SearchHeader() {
             <TbGridDots className="icon text-black" />
           </li>
           <li>
-            <button className="signin-btn px-2 sm:px-6 whitespace-nowrap">
+            <button className="main-btn px-2 sm:px-6 whitespace-nowrap">
               Sign in
             </button>
           </li>

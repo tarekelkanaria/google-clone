@@ -27,7 +27,7 @@ const HeaderSearchForm = () => {
     >
       <input
         type="text"
-        className="w-full focus:outline-none"
+        className="w-full focus:outline-none indent-5"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
       />

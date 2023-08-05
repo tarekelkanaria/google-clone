@@ -4,7 +4,7 @@ import { TbGridDots } from "react-icons/tb";
 export default function HomeHeader() {
   return (
     <header className="container flex justify-end">
-      <nav className="flex space-x-5 items-center p-4">
+      <nav className="flex space-x-2 sm:space-x-5 items-center p-4">
         <Link
           href="https://mail.google.com"
           className="text-sm hover:underline transition-all duration-75"

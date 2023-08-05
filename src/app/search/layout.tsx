@@ -8,7 +8,7 @@ export default function SearchLayout({
   return (
     <>
       <SearchHeader />
-      {children}
+      <main>{children}</main>
     </>
   );
 }

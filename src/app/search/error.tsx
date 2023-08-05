@@ -18,7 +18,7 @@ const Error = ({
   }, [error]);
 
   return (
-    <main className="flex flex-col justify-center items-center pt-10">
+    <section className="flex flex-col justify-center items-center pt-10">
       <h1 className="text-4xl mb-4 font-bold text-rose-600">
         Something Went Wrong!
       </h1>
@@ -28,7 +28,7 @@ const Error = ({
       <button onClick={() => reset()} className="main-btn">
         Try again
       </button>
-    </main>
+    </section>
   );
 };
 

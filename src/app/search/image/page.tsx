@@ -18,6 +18,7 @@ export default async function ImageSearch({
   const { searchTerm } = searchParams;
   const startIndex = searchParams.index || "1";
 
+  await new Promise((resolve) => setTimeout(resolve, 100));
   const response = await fetch(
     `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CONTEXT_KEY}&q=${searchTerm}&searchType=image&start=${startIndex}`
   );
@@ -31,7 +32,7 @@ export default async function ImageSearch({
   };
 
   return (
-    <main>
+    <>
       {!items && (
         <section className="flex flex-col justify-center items-center pt-10 ">
           <h1 className="text-4xl mb-4 font-bold text-rose-600 ">
@@ -50,6 +51,6 @@ export default async function ImageSearch({
         </section>
       )}
       {items && <ImageSearchItems results={items} />}
-    </main>
+    </>
   );
 }

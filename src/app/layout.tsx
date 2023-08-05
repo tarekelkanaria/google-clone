@@ -1,4 +1,4 @@
-import MainFooter from "@/components/MainFooter";
+import MainFooter from "@/components/Shared/MainFooter";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`&{inter.className} relative min-h-screen`}
+        className={`${inter.className} relative min-h-screen`}
         suppressHydrationWarning
       >
         {children}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import ImageSearchItems from "@/components/ImageSearchItems";
+import ImageSearchItems from "@/components/Search/ImageSearchItems";
 
 import {
   SearchDataType,
@@ -13,12 +13,13 @@ const GOOGLE_CONTEXT_KEY = process.env.GOOGLE_CONTEXT_KEY;
 export default async function ImageSearch({
   searchParams,
 }: {
-  searchParams: { searchTerm: string };
+  searchParams: { searchTerm: string; index?: string };
 }) {
   const { searchTerm } = searchParams;
+  const startIndex = searchParams.index || "1";
 
   const response = await fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CONTEXT_KEY}&q=${searchTerm}&searchType=image`
+    `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CONTEXT_KEY}&q=${searchTerm}&searchType=image&start=${startIndex}`
   );
 
   if (!response.ok) throw new Error("Error has Occurred");

@@ -1,4 +1,4 @@
-import SearchHeader from "@/components/SearchHeader";
+import SearchHeader from "@/components/Search/SearchHeader";
 
 export default function SearchLayout({
   children,

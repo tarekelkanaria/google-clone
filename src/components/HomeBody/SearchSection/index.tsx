@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useSwr from "swr";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -19,10 +19,20 @@ const SearchSection = () => {
   const [searchWord, setSearchWord] = useState<string>("");
   const [isRandomSearch, setIsRandomSearch] = useState<boolean>(false);
   const router = useRouter();
-  const { data, error, isLoading } = useSwr(
+  const { data, isLoading } = useSwr(
     isRandomSearch ? "random-word" : null,
-    fetcher
+    fetcher,
+    {
+      onSuccess: () => {
+        router.push(`/search/all?searchTerm=${data[0]}`);
+      },
+      onError: () => {
+        return;
+      },
+      revalidateOnMount: true,
+    }
   );
+  const [loader, setLoader] = useState<boolean>(isLoading);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,15 +41,9 @@ const SearchSection = () => {
   };
 
   const handleRandomSearch = () => {
+    setLoader(true);
     setIsRandomSearch(true);
   };
-
-  useEffect(() => {
-    if (error) return;
-    if (data) {
-      router.push(`/search/all?searchTerm=${data[0]}`);
-    }
-  }, [data, error]);
 
   return (
     <>
@@ -66,11 +70,11 @@ const SearchSection = () => {
         <button
           type="submit"
           onClick={handleRandomSearch}
-          disabled={isLoading}
+          disabled={loader}
           className="btn flex justify-center items-center disabled:opacity-80"
         >
-          <ClipLoader color="#93c5fd" loading={isLoading} size={20} />
-          {!isLoading && !data && "I'm Feeling Lucky"}
+          <ClipLoader color="#4285f4" loading={loader} size={20} />
+          {!loader && "I'm Feeling Lucky"}
         </button>
       </article>
     </>

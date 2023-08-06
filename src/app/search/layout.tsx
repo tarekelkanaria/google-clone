@@ -1,3 +1,4 @@
+import Providers from "@/components/Providers";
 import SearchHeader from "@/components/Search/SearchHeader";
 
 export default function SearchLayout({
@@ -7,7 +8,9 @@ export default function SearchLayout({
 }) {
   return (
     <>
-      <SearchHeader />
+      <Providers>
+        <SearchHeader />
+      </Providers>
       <main>{children}</main>
     </>
   );

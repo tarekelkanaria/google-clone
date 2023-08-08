@@ -17,17 +17,21 @@ const VoiceSearch = ({
     useSpeechContext();
 
   useEffect(() => {
+    const endStreaming = async () => {
+      await stop();
+      updateSearch(transcripts);
+      setTranscripts("");
+      closeRecording();
+    };
     const streaming = async () => {
       if (transcripts) {
-        await stop();
-        updateSearch(transcripts);
-        setTranscripts("");
-        closeRecording();
+        endStreaming();
       } else {
         await attachMicrophone();
         await start();
-        if (listening) {
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        if (!segment) {
+          endStreaming();
         }
       }
     };

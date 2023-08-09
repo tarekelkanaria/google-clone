@@ -48,7 +48,7 @@ const SearchSection = () => {
     setIsRandomSearch(true);
   };
 
-  const handleRecordingStart = async () => {
+  const handleRecordingStart = () => {
     setIsRecordStarted(true);
   };
 

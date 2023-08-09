@@ -22,7 +22,7 @@ const HeaderSearchForm = () => {
     router.push(`/search/all?searchTerm=${term}`);
   };
 
-  const handleRecordingStart = async () => {
+  const handleRecordingStart = () => {
     setIsRecordStarted(true);
   };
 

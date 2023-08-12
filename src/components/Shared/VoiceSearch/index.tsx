@@ -12,27 +12,24 @@ const VoiceSearch = ({
   closeRecording: () => void;
   updateSearch: (word: string) => void;
 }) => {
-  const [transcripts, setTranscripts] = useState<string>("");
+  const [transcripts, setTranscripts] = useState<string[]>([]);
+  const [tentative, setTentative] = useState<string>("");
   const { segment, listening, attachMicrophone, start, stop } =
     useSpeechContext();
 
   useEffect(() => {
     const endStreaming = async () => {
       await stop();
-      updateSearch(transcripts);
-      setTranscripts("");
+      updateSearch(transcripts.join(" "));
       closeRecording();
     };
     const streaming = async () => {
-      if (transcripts) {
+      if (transcripts.join(" ")) {
         endStreaming();
       } else {
         await attachMicrophone();
         await start();
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        if (!segment) {
-          endStreaming();
-        }
+        await new Promise((resolve) => setTimeout(resolve, 3000));
       }
     };
     streaming();
@@ -40,9 +37,13 @@ const VoiceSearch = ({
 
   useEffect(() => {
     const extractWords = () => {
-      if (segment?.isFinal) {
+      if (segment) {
         const transcript = segment.words.map((word) => word.value).join(" ");
-        setTranscripts(transcript);
+        setTentative(transcript);
+        if (segment?.isFinal) {
+          setTentative("");
+          setTranscripts((current) => [...current, tentative]);
+        }
       }
     };
     extractWords();
@@ -52,6 +53,7 @@ const VoiceSearch = ({
     await stop();
     closeRecording();
   };
+
   return (
     <div className="absolute top-full left-1/3 lg:left-3/4 p-2 bg-rose-200 text-blue-700 text-2xl flex">
       {listening ? "Speak" : "Waiting..."}
